@@ -1,0 +1,32 @@
+testbed: 
+    name: DevOps for Network Engineer pyATS Example 1
+    credentials: 
+      default:
+        username: cisco
+        password: cisco
+      enable:
+        password: cisco 
+
+devices:
+   lax-edg-r1: # must match device hostname
+       alias: lax-edg-r1
+       type: ios
+       connections:
+         defaults:
+           class: unicon.Unicon  
+         management:
+           ip: 192.168.2.51
+           protocol: ssh
+
+topology: 
+    lax-edg-r1:
+        interfaces:
+            GigabitEthernet0/2:
+                ipv4: 10.0.0.1/30
+                link: link-1
+                type: ethernet
+            Loopback0:
+                ipv4: 192.168.0.10/32
+                link: iosv-1_Loopback0
+                type: loopback
+

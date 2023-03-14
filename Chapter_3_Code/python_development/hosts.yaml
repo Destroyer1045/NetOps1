@@ -1,0 +1,6 @@
+lax-cor-r1:
+  hostname: 192.168.2.50
+  password: cisco
+  platform: cisco_nxos
+  port: 22
+  username: cisco

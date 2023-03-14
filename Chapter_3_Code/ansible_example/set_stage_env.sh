@@ -1,0 +1,2 @@
+export hosts=stage_all
+export backup_directory=stage_backups

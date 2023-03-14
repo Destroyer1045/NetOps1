@@ -1,0 +1,158 @@
+GitLab Create New Project: 
+
+Menu -> Projects -> Create New Project 
+
+Installing Git: 
+
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+Common Git Operations: 
+
+1. Git install and configuration 
+
+$ git config
+$ git config --global user.name "<your name>"
+$ git config --global user.email "<your email>"
+
+ cat ~/.gitconfig
+[user]
+	name = <name>
+	email = <email>
+
+
+2. To copy an existing Git repository
+
+$ git clone <repository location>
+
+
+3. Initialize a directory as Git repo with 'git init' (not required if you are cloning from remote)
+
+$ mkdir my_repository
+
+# see all current files
+$ ls -lia 
+
+$ git init
+Initialized empty Git repository in <location>/my_repository/.git/
+(venv) Erics-MacBook-Pro:my_repository echou$ ls -lia
+total 0
+<skip>
+954326640 drwxr-xr-x   9 echou  staff  288 Jun  3 10:30 .git
+
+(venv) $ ls -lia .git/
+total 24
+<skip>
+954326659 -rw-r--r--   1 echou  staff   23 Jun  3 10:30 HEAD
+954326668 -rw-r--r--   1 echou  staff  137 Jun  3 10:30 config
+954326643 -rw-r--r--   1 echou  staff   73 Jun  3 10:30 description
+954326644 drwxr-xr-x  13 echou  staff  416 Jun  3 10:30 hooks
+954326641 drwxr-xr-x   3 echou  staff   96 Jun  3 10:30 info
+954326669 drwxr-xr-x   4 echou  staff  128 Jun  3 10:30 objects
+954326656 drwxr-xr-x   4 echou  staff  128 Jun  3 10:30 refs
+
+3. Status check
+
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+4. Adding a file
+
+$ touch file1
+(venv) Erics-MacBook-Pro:my_repository echou$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	file1
+
+$ git add file1
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   file1
+
+$ git log
+fatal: your current branch 'master' does not have any commits yet
+
+$ git commit -m "adding file1"
+[master (root-commit) e1d0632] adding file1
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file1
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git log
+commit e1d0632df496e85c841e89ba98b42a7c3f20b332 (HEAD -> master)
+Author: Eric Chou <echou@yahoo.com>
+Date:   Wed Jun 3 10:49:04 2020 -0700
+
+    adding file1
+
+5. Making changes to the file
+
+$ vim file1
+$ git status
+$ git diff
+
+$ git add file1
+$ git commit -m "modified file1"
+$ git log
+
+6. Removing a file 
+
+$ rm file1
+$ git status
+$ git add file1
+$ git status
+$ git commit -m "removed file1"
+$ git status
+$ git log
+
+7. Looking at differences 
+
+$ git diff <tag 1> <tag 2>
+
+8. Creating a branch
+
+$ touch file1
+$ git branch bug1_fix
+$ git branch
+
+$ git checkout bug1_fix
+<make your fix>
+
+$ git add file1
+$ git commit -m "bug1 fix to file 1"
+$ git status
+
+9. Merge changes 
+
+$ git checkout master
+$ git merge bug1_fix
+
+10. Pull changes in from remote repository
+
+$ git pull origin master
+
+11. Push local changes to remote repository
+
+$ touch my_new_file.txt
+$ git add my_new_file.txt
+$ git commit -m "add my_new_file.txt"
+$ git push origin master
+
+

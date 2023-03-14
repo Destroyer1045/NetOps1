@@ -1,0 +1,20 @@
+---
+- name: Backup Configuration Files 
+  connection: network_cli
+  gather_facts: false
+  hosts: "{{ lookup('env', 'hosts') }}"
+  tasks:
+    - name: backup edge
+      cisco.ios.ios_config:
+        backup: yes
+        backup_options: 
+          dir_path: "{{ lookup('env', 'backup_directory') }}"
+      register: backup_ios_location
+      when: ansible_network_os == 'cisco.ios.ios'
+    - name: backup cor
+      cisco.nxos.nxos_config: 
+        backup: yes
+        backup_options: 
+          dir_path: "{{ lookup('env', 'backup_directory') }}"
+      register: backup_nxos_location
+      when: ansible_network_os == 'cisco.nxos.nxos'
